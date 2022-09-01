@@ -18,12 +18,14 @@ VALUES
   ('A', '2021-01-07'),
   ('B', '2021-01-09');
 
+# -------------------------------------------------------------------
+
 DROP TABLE IF EXISTS menu 
 
 CREATE TABLE IF EXISTS menu(
-    product_id INTEGER PRIMARY KEY NOT NULL,
+    product_id INTEGER PRIMARY KEY NOT NULL UNIQUE,
     product_name varchar(10),
-    price INTEGER
+    price INTEGER NOT NULL
 );
 
 # valores para menu
@@ -33,6 +35,8 @@ VALUES
   ('1', 'sushi', '10'),
   ('2', 'curry', '15'),
   ('3', 'ramen', '12');
+
+# -------------------------------------------------------------------
 
 DROP TABLE IF EXISTS sales;
 
