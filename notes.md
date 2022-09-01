@@ -124,8 +124,6 @@ WITH f_buy as(
         sales a
     LEFT JOIN
         menu b on(a.product_id=b.product_id)
-    LEFT JOIN members c on(a.customer_id=c.customer_id)
-)
 SELECT
     customer_id,
     order_date,
@@ -143,8 +141,21 @@ A|2021-01-01|sushi
 B|2021-01-01|curry
 C|2021-01-01|ramen
 
-### 4. Cuál es el artículo más comprado y cuantas veces lo compor cada cliente?
+### 4. Cuál es el artículo más comprado y cuantas veces lo compro cada cliente?
 ### Consulta
 ```sql
-
+SELECT
+    b.product_name as Pname
+    count(b.product_name) More_sale
+FROM
+    sales a
+LEFT JOIN menu b ON(a.product_id=b.product_id)
+GROUP BY b.product_name
+ORDER BY More_sale DESC
 ```
+### Respuesta:
+Pname|More_sale
+-- | --
+ramen|8
+curry|4
+sushi|3
