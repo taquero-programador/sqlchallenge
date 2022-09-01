@@ -146,7 +146,7 @@ C|2021-01-01|ramen
 ```sql
 SELECT
     b.product_name as Pname
-    count(b.product_name) More_sale
+    count(b.product_name) as More_sale
 FROM
     sales a
 LEFT JOIN menu b ON(a.product_id=b.product_id)
