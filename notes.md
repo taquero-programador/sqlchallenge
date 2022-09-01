@@ -123,7 +123,7 @@ WITH f_buy as(
     FROM
         sales a
     LEFT JOIN
-        menu b on(a.product_id=b.product_id)
+        menu b on(a.product_id=b.product_id))
 SELECT
     customer_id,
     order_date,
