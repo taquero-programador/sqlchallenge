@@ -4,7 +4,7 @@
 ```bash
 sqlite3 dinner.db
 ```
-
+```sql
 DROP TABLE IF EXISTS members;
 
 CREATE TABLE IF EXISTS members(
@@ -18,7 +18,7 @@ INSERT INTO members
 VALUES
   ('A', '2021-01-07'),
   ('B', '2021-01-09');
-
+```
 # -------------------------------------------------------------------
 
 DROP TABLE IF EXISTS menu 
