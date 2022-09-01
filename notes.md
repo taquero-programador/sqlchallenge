@@ -110,6 +110,32 @@ Customer|Total_visit
 B|6
 A|4
 C|2
-# -------------------------------------------------------------------
-3. Cuál fue el primer artículo comprado por cada cliente?
-# consulta
+
+### 3. Cuál fue el primer artículo comprado por cada cliente?
+### consulta
+```sql
+SELECT
+    customer_id,
+    order_date
+FROM
+    (SELECT
+    b.customer_id,
+    b.order_date,
+    c.product_name,
+    dense_rank() over(partition by b.customer_id order by b.order_date)rank
+    FROM
+        sales b
+    LEFT JOIN menu c ON(b.product_id=c.product_id)
+    LEFT JOIN members d ON(b.customer_id=d.customer_id)) a
+WHERE rank =1
+GROUP BY customer_id, order_date
+```
+### Resuldato:
+Customer|Date_pursh|Name_product
+-- | -- | --
+A|2021-01-01|sushi
+A|2021-01-01|curry
+B|2021-01-01|curry
+C|2021-01-01|ramen
+
+### 4. 
