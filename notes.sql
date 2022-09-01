@@ -7,7 +7,7 @@ sqlite3 dinner.db
 DROP TABLE IF EXISTS members;
 
 CREATE TABLE IF EXISTS members(
-    customer_id varchar(i) PRIMARY KEY NOT NULL UNIQUE,
+    customer_id varchar(1) PRIMARY KEY NOT NULL UNIQUE,
     join_date DATETIME
 );
 
@@ -68,3 +68,24 @@ VALUES
   ('C', '2021-01-01', '3'),
   ('C', '2021-01-01', '3'),
   ('C', '2021-01-07', '3');
+
+# -------------------------------------------------------------------
+# 1. Cuál es la cantidad total que gastó cada cliente?
+# consulta
+SELECT
+    a.customer_id as Customer,
+    count(a.customer_id) as Total_com,
+    sum(b.price) as Total_amount
+FROM
+    sales a
+LEFT JOIN menu b On (a.product_id = b.product_id)
+GROUP BY a.customer_id
+ORDER BY Total_amount DESC;
+# Resultado:
+Customer|Total_com|Total_amount
+A|6|76
+B|6|74
+C|3|36
+# -------------------------------------------------------------------
+# 2. Cuántos días ha visitado cada cliente el restaurant?
+# consulta
