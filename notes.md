@@ -1,8 +1,9 @@
 # dannys dinner
 # sqlite
 # crear y realacionar tablas
-
+```bash
 sqlite3 dinner.db
+```
 
 DROP TABLE IF EXISTS members;
 
@@ -70,6 +71,10 @@ VALUES
   ('C', '2021-01-07', '3');
 
 # -------------------------------------------------------------------
+# -------------------------------------------------------------------
+# -------------------------------------------------------------------
+# -------------------------------------------------------------------
+
 # 1. Cuál es la cantidad total que gastó cada cliente?
 # consulta
 SELECT
@@ -102,3 +107,6 @@ Customer|Total_visit
 B|6
 A|4
 C|2
+# -------------------------------------------------------------------
+3. Cuál fue el primer artículo comprado por cada cliente?
+# consulta
