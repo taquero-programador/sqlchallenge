@@ -78,7 +78,8 @@ SELECT
     sum(b.price) as Total_amount
 FROM
     sales a
-LEFT JOIN menu b On (a.product_id = b.product_id)
+LEFT JOIN
+    menu b On (a.product_id = b.product_id)
 GROUP BY a.customer_id
 ORDER BY Total_amount DESC;
 # Resultado:
@@ -89,3 +90,15 @@ C|3|36
 # -------------------------------------------------------------------
 # 2. Cuántos días ha visitado cada cliente el restaurant?
 # consulta
+SELECT
+    customer_id as Customer,
+    COUNT(DISTINCT(order_date)) as Total_visit
+FROM
+    sales
+GROUP BY customer_id
+ORDER BY Total_visit DESC;
+# Resultado:
+Customer|Total_visit
+B|6
+A|4
+C|2
