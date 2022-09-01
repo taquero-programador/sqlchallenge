@@ -87,11 +87,11 @@ GROUP BY a.customer_id
 ORDER BY Total_amount DESC;
 ```
 ### Resultado:
-Customer | Total_com | Total_amount
+Customer|Total_com|Total_amount
 -- | -- | --
-A | 6 | 76
-B | 6 | 74
-C | 3 | 36
+A|6|76
+B|6|74
+C|3|36
 
 ### 2. Cuántos días ha visitado cada cliente el restaurant?
 ### consulta
@@ -105,7 +105,7 @@ GROUP BY customer_id
 ORDER BY Total_visit DESC;
 ```
 ### Resultado:
-Customer | Total_visit
+Customer|Total_visit
 -- | --
 B|6
 A|4
