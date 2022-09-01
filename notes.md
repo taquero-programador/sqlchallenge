@@ -114,28 +114,37 @@ C|2
 ### 3. Cuál fue el primer artículo comprado por cada cliente?
 ### consulta
 ```sql
+WITH f_buy as(
+    SELECT
+        a.customer_id,
+        a.order_date,
+        b.product_name,
+        dense_rank() over(partition by a.customer_id order by a.order_date)rank
+    FROM
+        sales a
+    LEFT JOIN
+        menu b on(a.product_id=b.product_id)
+    LEFT JOIN members c on(a.customer_id=c.customer_id)
+)
 SELECT
     customer_id,
-    order_date
+    order_date,
+    product_name
 FROM
-    (SELECT
-    b.customer_id,
-    b.order_date,
-    c.product_name,
-    dense_rank() over(partition by b.customer_id order by b.order_date)rank
-    FROM
-        sales b
-    LEFT JOIN menu c ON(b.product_id=c.product_id)
-    LEFT JOIN members d ON(b.customer_id=d.customer_id)) a
-WHERE rank =1
-GROUP BY customer_id, order_date
+    f_buy
+WHERE rank=1
+GROUP BY customer_id, product_name
 ```
 ### Resuldato:
 Customer|Date_pursh|Name_product
 -- | -- | --
-A|2021-01-01|sushi
 A|2021-01-01|curry
+A|2021-01-01|sushi
 B|2021-01-01|curry
 C|2021-01-01|ramen
 
-### 4. 
+### 4. Cuál es el artículo más comprado y cuantas veces lo compor cada cliente?
+### Consulta
+```sql
+
+```
