@@ -1,6 +1,7 @@
-# dannys dinner
-# sqlite
-# crear y realacionar tablas
+# dannys dinner `sqlite` 
+
+## crear y realacionar tablas
+
 ```bash
 sqlite3 dinner.db
 ```
@@ -12,15 +13,14 @@ CREATE TABLE IF EXISTS members(
     join_date DATETIME
 );
 
-# datos memebers
+# datos members
 INSERT INTO members
   ("customer_id", "join_date")
 VALUES
   ('A', '2021-01-07'),
   ('B', '2021-01-09');
 ```
-# -------------------------------------------------------------------
-
+```sql
 DROP TABLE IF EXISTS menu 
 
 CREATE TABLE IF EXISTS menu(
@@ -36,9 +36,8 @@ VALUES
   ('1', 'sushi', '10'),
   ('2', 'curry', '15'),
   ('3', 'ramen', '12');
-
-# -------------------------------------------------------------------
-
+```
+```sql
 DROP TABLE IF EXISTS sales;
 
 CREATE TABLE IF EXISTS sales(
@@ -69,14 +68,13 @@ VALUES
   ('C', '2021-01-01', '3'),
   ('C', '2021-01-01', '3'),
   ('C', '2021-01-07', '3');
+```
 
-# -------------------------------------------------------------------
-# -------------------------------------------------------------------
-# -------------------------------------------------------------------
-# -------------------------------------------------------------------
+# 
 
-# 1. Cuál es la cantidad total que gastó cada cliente?
-# consulta
+### 1. Cuál es la cantidad total que gastó cada cliente?
+### consulta
+```sql
 SELECT
     a.customer_id as Customer,
     count(a.customer_id) as Total_com,
@@ -87,11 +85,13 @@ LEFT JOIN
     menu b On (a.product_id = b.product_id)
 GROUP BY a.customer_id
 ORDER BY Total_amount DESC;
-# Resultado:
-Customer|Total_com|Total_amount
-A|6|76
-B|6|74
-C|3|36
+```
+### Resultado:
+Customer | Total_com | Total_amount
+-- | -- | --
+A | 6 | 76
+B | 6 | 74
+C | 3 | 36
 # -------------------------------------------------------------------
 # 2. Cuántos días ha visitado cada cliente el restaurant?
 # consulta
