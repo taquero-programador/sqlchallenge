@@ -1,9 +1,11 @@
-# dannys dinner
-# sqlite
-# crear y realacionar tablas
+# dannys dinner `sqlite` 
 
+## crear y realacionar tablas
+
+```bash
 sqlite3 dinner.db
-
+```
+```sql
 DROP TABLE IF EXISTS members;
 
 CREATE TABLE IF EXISTS members(
@@ -11,15 +13,14 @@ CREATE TABLE IF EXISTS members(
     join_date DATETIME
 );
 
-# datos memebers
+# datos members
 INSERT INTO members
   ("customer_id", "join_date")
 VALUES
   ('A', '2021-01-07'),
   ('B', '2021-01-09');
-
-# -------------------------------------------------------------------
-
+```
+```sql
 DROP TABLE IF EXISTS menu 
 
 CREATE TABLE IF EXISTS menu(
@@ -35,9 +36,8 @@ VALUES
   ('1', 'sushi', '10'),
   ('2', 'curry', '15'),
   ('3', 'ramen', '12');
-
-# -------------------------------------------------------------------
-
+```
+```sql
 DROP TABLE IF EXISTS sales;
 
 CREATE TABLE IF EXISTS sales(
@@ -68,24 +68,74 @@ VALUES
   ('C', '2021-01-01', '3'),
   ('C', '2021-01-01', '3'),
   ('C', '2021-01-07', '3');
+```
 
-# -------------------------------------------------------------------
-# 1. Cuál es la cantidad total que gastó cada cliente?
-# consulta
+# 
+
+### 1. Cuál es la cantidad total que gastó cada cliente?
+### consulta
+```sql
 SELECT
     a.customer_id as Customer,
     count(a.customer_id) as Total_com,
     sum(b.price) as Total_amount
 FROM
     sales a
-LEFT JOIN menu b On (a.product_id = b.product_id)
+LEFT JOIN
+    menu b On (a.product_id = b.product_id)
 GROUP BY a.customer_id
 ORDER BY Total_amount DESC;
-# Resultado:
+```
+### Resultado:
 Customer|Total_com|Total_amount
+-- | -- | --
 A|6|76
 B|6|74
 C|3|36
-# -------------------------------------------------------------------
-# 2. Cuántos días ha visitado cada cliente el restaurant?
-# consulta
+
+### 2. Cuántos días ha visitado cada cliente el restaurant?
+### consulta
+```sql
+SELECT
+    customer_id as Customer,
+    COUNT(DISTINCT(order_date)) as Total_visit
+FROM
+    sales
+GROUP BY customer_id
+ORDER BY Total_visit DESC;
+```
+### Resultado:
+Customer|Total_visit
+-- | --
+B|6
+A|4
+C|2
+
+### 3. Cuál fue el primer artículo comprado por cada cliente?
+### consulta
+```sql
+SELECT
+    customer_id,
+    order_date
+FROM
+    (SELECT
+    b.customer_id,
+    b.order_date,
+    c.product_name,
+    dense_rank() over(partition by b.customer_id order by b.order_date)rank
+    FROM
+        sales b
+    LEFT JOIN menu c ON(b.product_id=c.product_id)
+    LEFT JOIN members d ON(b.customer_id=d.customer_id)) a
+WHERE rank =1
+GROUP BY customer_id, order_date
+```
+### Resuldato:
+Customer|Date_pursh|Name_product
+-- | -- | --
+A|2021-01-01|sushi
+A|2021-01-01|curry
+B|2021-01-01|curry
+C|2021-01-01|ramen
+
+### 4. 
