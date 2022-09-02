@@ -69,9 +69,7 @@ VALUES
   ('C', '2021-01-01', '3'),
   ('C', '2021-01-07', '3');
 ```
-
-# 
-
+***
 ### 1. Cuál es la cantidad total que gastó cada cliente?
 ### Consulta
 ```sql
