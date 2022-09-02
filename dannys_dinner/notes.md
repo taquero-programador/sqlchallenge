@@ -1,6 +1,6 @@
 # dannys dinner `sqlite` 
 
-## crear y realacionar tablas
+## Crear y relacionar tablas
 
 ```bash
 sqlite3 dinner.db
@@ -69,11 +69,9 @@ VALUES
   ('C', '2021-01-01', '3'),
   ('C', '2021-01-07', '3');
 ```
-
-# 
-
+***
 ### 1. Cuál es la cantidad total que gastó cada cliente?
-### consulta
+### Consulta
 ```sql
 SELECT
     a.customer_id as Customer,
@@ -92,9 +90,9 @@ Customer|Total_com|Total_amount
 A|6|76
 B|6|74
 C|3|36
-
+***
 ### 2. Cuántos días ha visitado cada cliente el restaurant?
-### consulta
+### Consulta
 ```sql
 SELECT
     customer_id as Customer,
@@ -110,9 +108,9 @@ Customer|Total_visit
 B|6
 A|4
 C|2
-
+***
 ### 3. Cuál fue el primer artículo comprado por cada cliente?
-### consulta
+### Consulta
 ```sql
 WITH f_buy as(
     SELECT
@@ -133,14 +131,14 @@ FROM
 WHERE rank=1
 GROUP BY customer_id, product_name
 ```
-### Resuldato:
+### Respuesta:
 Customer|Date_pursh|Name_product
 -- | -- | --
 A|2021-01-01|curry
 A|2021-01-01|sushi
 B|2021-01-01|curry
 C|2021-01-01|ramen
-
+***
 ### 4. Cuál es el artículo más comprado y cuantas veces lo compro cada cliente?
 ### Consulta
 ```sql
@@ -159,7 +157,7 @@ Pname|More_sale
 ramen|8
 curry|4
 sushi|3
-
+***
 ### 5. Qué artículo fue más popular por cliente?
 ### Consulta
 ```sql
@@ -174,9 +172,9 @@ LEFT JOIN menu b ON(a.product_id=b.product_id)
 GROUP BY a.customer_id, b.product_name
 )
 SELECT
-	customer_id,
-	product_name,
-	or_count
+	customer_id as Customer,
+	product_name as "Product name",
+	or_count as "Popular foo"
 FROM
 	popitems
 WHERE rank=1
@@ -189,3 +187,112 @@ B|curry|2
 B|ramen|2
 B|sushi|2
 C|ramen|3
+***
+### 6. Primer artículo comprado por el cliente después de ser miembro?
+### Consulta
+```sql
+WITH after_member as(
+SELECT
+	a.customer_id,
+	b.product_name,
+	c.join_date,
+	a.order_date,
+	dense_rank() over(partition by a.customer_id order by a.order_date) rank
+FROM sales a
+LEFT JOIN menu b ON(a.product_id=b.product_id)
+LEFT JOIN members c ON(a.customer_id=c.customer_id)
+WHERE a.order_date > c.join_date
+)
+SELECT
+	customer_id as Customer,
+	join_date as "Member from",
+	product_name as "Product name",
+	order_date as "Date Purchased"
+FROM
+	after_member
+WHERE rank=1
+```
+### Respuesta:
+Customer|Member from|Product name|Date Purchased
+-- | -- | -- | --
+A|2021-01-07|ramen|2021-01-10
+B|2021-01-09|sushi|2021-01-11
+***
+### 7. Qué artículo compro el cliente antes de ser miembro?
+### Consulta
+```sql
+WITH before_member as(
+SELECT
+	a.customer_id,
+	b.product_name,
+	c.join_date,
+	a.order_date,
+	dense_rank() over(partition by a.customer_id order by a.order_date) rank
+FROM sales a
+LEFT JOIN menu b ON(a.product_id=b.product_id)
+LEFT JOIN members c ON(a.customer_id=c.customer_id)
+WHERE a.order_date < c.join_date
+)
+SELECT
+	customer_id as Customer,
+	join_date as "Member from",
+	product_name as "Product name",
+	order_date as "Date Purchased"
+FROM
+	before_member
+WHERE rank=1
+```
+### Respuesta:
+Customer|Member from|Product name|Date Purchased
+--| -- | -- | --
+A|2021-01-07|sushi|2021-01-01
+A|2021-01-07|curry|2021-01-01
+B|2021-01-09|curry|2021-01-01
+C|2021-01-10|ramen|2021-01-01
+C|2021-01-10|ramen|2021-01-01
+***
+### 8. Total de artículos y cantidad gastada por cliente antes de ser miembro?
+### Consulta
+```sql
+SELECT
+	a.customer_id as Customer,
+	count(a.product_id) as "Total articles",
+	sum(b.price) as "Total amount"
+FROM sales a
+LEFT JOIN menu b ON(a.product_id=b.product_id)
+LEFT JOIN members c ON(a.customer_id=c.customer_id)
+WHERE a.order_date < c.join_date
+GROUP BY a.customer_id
+```
+### Respuesta:
+Customer|Total articles|Total amount
+-- | -- | --
+A|2|25
+B|3|40
+C|3|36
+***
+### 9. Si cada $1 gastado equivales a 10 puntos y el sushi tiene el doble de puntos. Cuánto tendría cada cliente?
+### Consulta
+```sql
+SELECT
+	a.customer_id as Customer,
+	sum(b.points) as Points
+FROM sales a
+LEFT JOIN (
+	SELECT *,
+		CASE product_id
+			WHEN 1 THEN price*20
+			ELSE price*10
+		END points
+	FROM menu
+) b on(a.product_id=b.product_id)
+GROUP BY a.customer_id
+```
+### Respuesta:
+Customer|Points
+-- | --
+A|860
+B|940
+C|360
+***
+### 10.
