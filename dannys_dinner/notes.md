@@ -280,8 +280,8 @@ SELECT
 FROM sales a
 LEFT JOIN (
 	SELECT *,
-		CASE
-			WHEN product_id=1 THEN price*20
+		CASE product_id
+			WHEN 1 THEN price*20
 			else price*10
 		end points
 	FROM menu
