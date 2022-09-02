@@ -221,7 +221,7 @@ B|2021-01-09|sushi|2021-01-11
 ### 7. Qué artículo compro el cliente antes de ser miembro?
 ### Consulta
 ```sql
-WITH after_member as(
+WITH before_member as(
 SELECT
 	a.customer_id,
 	b.product_name,
@@ -239,7 +239,7 @@ SELECT
 	product_name as "Product name",
 	order_date as "Date Purchased"
 FROM
-	after_member
+	before_member
 WHERE rank=1
 ```
 ### Respuesta:
