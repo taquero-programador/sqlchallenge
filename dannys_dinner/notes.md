@@ -282,8 +282,8 @@ LEFT JOIN (
 	SELECT *,
 		CASE product_id
 			WHEN 1 THEN price*20
-			else price*10
-		end points
+			ELSE price*10
+		END points
 	FROM menu
 ) b on(a.product_id=b.product_id)
 GROUP BY a.customer_id
