@@ -270,3 +270,27 @@ Customer|Total articles|Total amount
 A|2|25
 B|3|40
 C|3|36
+***
+### 9. Si cada $1 gastado equivales a 10 puntos y el sushi tiene el doble de puntos. Cuánto tendría cada cliente?
+### Consulta
+```sql
+SELECT
+	a.customer_id as Customer,
+	sum(b.points) as Points
+FROM sales a
+LEFT JOIN (
+	SELECT *,
+		CASE
+			WHEN product_id=1 THEN price*20
+			else price*10
+		end points
+	FROM menu
+) b on(a.product_id=b.product_id)
+GROUP BY a.customer_id
+```
+### Respuesta:
+Customer|Points
+-- | --
+A|860
+B|940
+C|360
