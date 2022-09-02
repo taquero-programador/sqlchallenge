@@ -86,7 +86,7 @@ LEFT JOIN
 GROUP BY a.customer_id
 ORDER BY Total_amount DESC;
 ```
-### Resultado:
+### Respuesta:
 Customer|Total_com|Total_amount
 -- | -- | --
 A|6|76
@@ -104,7 +104,7 @@ FROM
 GROUP BY customer_id
 ORDER BY Total_visit DESC;
 ```
-### Resultado:
+### Respuesta:
 Customer|Total_visit
 -- | --
 B|6
@@ -159,3 +159,33 @@ Pname|More_sale
 ramen|8
 curry|4
 sushi|3
+
+### 5. Qué artículo fue más popular por cliente?
+### Consulta
+```sql
+WITH popitems as(
+SELECT
+	a.customer_id,
+	b.product_name,
+	count(b.product_name) as or_count,
+	dense_rank() over(partition by a.customer_id order by count(b.product_name) DESC) rank
+FROM sales a
+LEFT JOIN menu b ON(a.product_id=b.product_id)
+GROUP BY a.customer_id, b.product_name
+)
+SELECT
+	customer_id,
+	product_name,
+	or_count
+FROM
+	popitems
+WHERE rank=1
+```
+### Respuesta:
+Customer|Product name|Popular foo
+-- | -- | --
+A|ramen|3
+B|curry|2
+B|ramen|2
+B|sushi|2
+C|ramen|3
