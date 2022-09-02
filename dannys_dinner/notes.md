@@ -250,3 +250,23 @@ A|2021-01-07|curry|2021-01-01
 B|2021-01-09|curry|2021-01-01
 C|2021-01-10|ramen|2021-01-01
 C|2021-01-10|ramen|2021-01-01
+***
+### 8. Total de artículos y cantidad gastada por cliente antes de ser miembro?
+### Consulta
+```sql
+SELECT
+	a.customer_id as Customer,
+	count(a.product_id) as "Total articles",
+	sum(b.price) as "Total amount"
+FROM sales a
+LEFT JOIN menu b ON(a.product_id=b.product_id)
+LEFT JOIN members c ON(a.customer_id=c.customer_id)
+WHERE a.order_date < c.join_date
+GROUP BY a.customer_id
+```
+### Respuesta:
+Customer|Total articles|Total amount
+-- | -- | --
+A|2|25
+B|3|40
+C|3|36
