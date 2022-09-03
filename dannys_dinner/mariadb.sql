@@ -14,4 +14,7 @@ CREATE TABLE `bender`.`menu` (
 CREATE TABLE `bender`.`sales` (
     `customer_id` VARCHAR(1) NOT NULL ,
     `order_date` DATE NOT NULL ,
-    `product_id` INT NOT NULL
+    `product_id` INT NOT NULL,
+    FOREIGN KEY(customer_id) REFERENCES `bender`.`member`(customer_id),
+    FOREIGN KEY(product_id) REFERENCES `bender`.`menu`(product_id)
+) ENGINE = InnoDB;
