@@ -1,4 +1,4 @@
--- tabla memebers
+-- tabla members
 CREATE TABLE `bender`.`members` (
     `customer_id` VARCHAR(1) NOT NULL ,
     `join_date` DATETIME NOT NULL ,
