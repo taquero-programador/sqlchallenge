@@ -3,16 +3,14 @@
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-from config import Settings
+from config import settings
 
-url_db = Settings().url_db
-user = Settings().user_db
-passw = Settings().pass_db
-print(url_db)
 
-SQLALCHEMY_DATEBASE_URL = "mysql+pymysql://user:passw@url_db/bender"
+SQLALCHEMY_DATEBASE_URL = "mysql+pymysql://{}:{}@localhost:3306/bender?charset=utf8mb4"
 
-engine = create_engine(SQLALCHEMY_DATEBASE_URL)
+engine = create_engine(SQLALCHEMY_DATEBASE_URL.format(
+    settings.user_db, settings.pass_db.get_secret_value()
+    ))
 SessionLocal = sessionmaker(autocommit=False, bind=engine)
 Base = declarative_base()
 
