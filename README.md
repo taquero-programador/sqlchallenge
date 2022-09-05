@@ -1,3 +1,3 @@
-- [] Use sqlalchemy for db
-- [] Simple FastAPI
-- [] Create container on Docker
+- [ ] Use sqlalchemy for db
+- [ ] Simple FastAPI
+- [ ] Create container on Docker
