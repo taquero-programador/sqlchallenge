@@ -1,11 +1,12 @@
 #!/urs/bin/env python3
 
-from sqlalchemy import Boolean, Column, ForeignKey, String, Integer
+from sqlalchemy import Boolean, Column, ForeignKey, String, Integer, Date, DateTime
 from sqlalchemy.orm import relationship
 from database import Base
 
-class Name(Base):
-    __tablename__ = "names"
+class Members(Base):
+    __tablename__ = "members"
 
-    id = Column(Integer, primary_key=True)
-    name_one = Column(String(20))
+    customer_id = Column(String(1), primary_key=True)
+    join_date = Column(Date)
+
