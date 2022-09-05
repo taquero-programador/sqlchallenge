@@ -7,5 +7,5 @@ from database import Base
 class Name(Base):
     __tablename__ = "names"
 
-    id = Column(Integer, primary_key=True, index=True)
-    name_one = Column(String(20), index=True)
+    id = Column(Integer, primary_key=True)
+    name_one = Column(String(20))
