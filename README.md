@@ -4,4 +4,4 @@ Dinner project
 - [ ] Simple FastAPI
 - [x] Test container connect to DB
 - ***
-- [ ] Run App(fastpi) in cointaner for "production"
+- [ ] Run App(fastpi) in Docker for "production"
