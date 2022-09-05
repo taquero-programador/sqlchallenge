@@ -1,7 +1,7 @@
 #!/urs/bin/env python3
 
 from sqlalchemy import (Boolean, Column,
-                        oreignKey, String,
+                        ForeignKey, String,
                         Integer, Date, DateTime)
 from sqlalchemy.orm import relationship
 from database import Base
