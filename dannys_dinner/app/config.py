@@ -11,7 +11,7 @@ class Settings(BaseSettings):
     # url_db: str = Field(..., env="url_database")
     url_db: str = os.getenv("url_database")
     user_db: str = os.getenv("user_db")
-    pass_db: SecretStr =os.getenv("pass_db")
+    pass_db: SecretStr = os.getenv("pass_db")
 
     class Config:
         env_prefix = ""
