@@ -1,5 +1,7 @@
 Dinner project
-- [ ] Use sqlalchemy for db
+- [x] Use sqlalchemy for db
+- [x] Test connect Python to DB
 - [ ] Simple FastAPI
-- [ ] Create container on Docker
+- [x] Test container connect to DB
 - ***
+- [ ] Run App(fastpi) in cointaner for "production"
