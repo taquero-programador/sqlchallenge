@@ -296,3 +296,41 @@ B|940
 C|360
 ***
 ### 10.
+***
+### Referencia de relaciones con sqlalchemy
+### Uno a muchos
+La tabla hija tendra una columna con un ForeignKey que hara referencia a la principal.
+En la tabla padre se coloca `relationship()` como referencía a una colección de elementos de la tabla hija.
+```python
+class Parent(Base):
+    __tablename__ = "parent"
+
+    id = Column(Integer, primary_key=True)
+    children = relationship("Child")
+
+
+class Child(Base):
+    __tablename__ = "child"
+
+    id = Column(Integer, primary_key=True)
+    parent_id = Column(Integer, ForeignKey("parent.id"))
+```
+### Bidireccional uno a muchos y muchos a uno.
+En ambas tablas se establece `relationship()` con back_populate como argumento adicional, el cual hace referencía a la tabla actual.
+Se puede usar `backref`.
+```python
+class Parent(Base):
+    __tablename__ = "parent"
+
+    id = Column(Integer, primary_key=True)
+    children = relationship("Child", back_populate="parent")
+
+
+class Child(Base):
+    __tablename__ = "child"
+
+    id = Column(Integer, primary_key=True)
+    parent_id = Column(Integer, ForeignKey("parent.id"))
+    parent = relationship("Parent", back_populate="child")
+```
+### 
