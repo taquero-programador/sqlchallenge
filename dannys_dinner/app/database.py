@@ -3,7 +3,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-from config import settings
+from .config import settings
 
 
 SQLALCHEMY_DATEBASE_URL = "mysql+pymysql://{}:{}@{}/bender?charset=utf8mb4"
