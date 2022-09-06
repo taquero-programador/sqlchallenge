@@ -4,8 +4,7 @@ from sqlalchemy import (Boolean, Column,
                         ForeignKey, String,
                         Integer, Date, DateTime)
 from sqlalchemy.orm import relationship
-from database import Base
-from sqlalchemy.dialects import mysql
+from .database import Base
 
 class Members(Base):
 
@@ -21,7 +20,7 @@ class Menu(Base):
 
     __tablename__ = "menu"
 
-    product_id = Column(mysql.INTEGER(4), primary_key=True)
+    product_id = Column(Integer, primary_key=True)
     product_name = Column(String(20))
     price = Column(Boolean, nullable=False)
 
@@ -32,8 +31,8 @@ class Sales(Base):
 
     __tablename__ = "sales"
 
-    id = Column(Integer, primary_key=True
-    customer_id = Column(String, ForeignKey("members.customer_id"))
+    id = Column(Integer, primary_key=True)
+    customer_id = Column(String(1), ForeignKey("members.customer_id"))
     order_date = Column(DateTime, nullable=False)
     product_id = Column(Integer, ForeignKey("menu.product_id"))
 

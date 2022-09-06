@@ -3,9 +3,10 @@
 from sqlalchemy.orm import Session
 from . import models, schemas
 
-def create_member(db: Session, user: schemas.Members, id_user: str):
-    db_user = models.Members(customer_id=id_user, join_date=user.join_date)
+def create_member(db: Session, user: schemas.Members):
+    db_user = models.Members(customer_id=user.customer_id, join_date=user.join_date)
     db.add(db_user)
+    db.commit()
     db.refresh(db_user)
     return db_user
 
