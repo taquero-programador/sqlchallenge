@@ -316,7 +316,7 @@ class Child(Base):
     parent_id = Column(Integer, ForeignKey("parent.id"))
 ```
 ### Bidireccional uno a muchos y muchos a uno.
-En ambas tablas se establece `relationship()` con back_populate como argumento adicional, el cual hace referencía a la tabla actual.
+En ambas tablas se establece `relationship()` con `back_populate` como argumento adicional, el cual hace referencía a la tabla actual.
 Se puede usar `backref`.
 ```python
 class Parent(Base):
@@ -333,4 +333,59 @@ class Child(Base):
     parent_id = Column(Integer, ForeignKey("parent.id"))
     parent = relationship("Parent", back_populate="child")
 ```
-### 
+### Muchos a uno
+Coloca la ForeignKey en la tabla principal que hace referencia al id del valor secundario.
+`relationship()` tambien se daclara en la principal.
+```python
+class Parent(Base):
+    __tablename__ = "parent"
+
+    id = Column(Integer, primary_key=True)
+    child_id = Column(Integer, ForeignKey("child.id"))
+    child = relationship("Child")
+
+
+class Child(Base):
+    __tablename__ = "child"
+    id = Column(Integer, primary_key=True)
+```
+Para un comportamiento Bidireccional se debe colorar `relationship()` en ambas tablas y `back_populate`.
+### Uno a uno
+```python
+class Parent(Base):
+    __tablename__ = "parent"
+
+    id = Column(Integer, primary_key=True)
+    child = relationship("Child", back_populate="parent", uselist=False)
+
+
+class Child(Base):
+    __tablename__ = "child"
+
+    id = Column(Integer, primary_key=True)
+    parent_id = Column(Integer, ForeignKey("parent.id"))
+    parent = relationship("Parent", back_populate="child")
+```
+### Muchos a muchos
+```python
+association_table = Table(
+    "association",
+    Base.metadata,
+    Column("left_id", ForeignKey("left.id")),
+    Column("right_id", ForeignKey("right.id")),
+)
+
+
+class Parent(Base):
+    __tablename__ = "left"
+
+    id = Column(Integer, primary_key=True)
+    childre = relationship("Child", secondary=association_table)
+
+
+class Child(Base):
+    __tablename__ = "right"
+
+    id = Column(Integer, primary_key=True)
+```
+Para un efecto Bidireccional usar `relationship()` en ambas tablas junto a `back_populate`.

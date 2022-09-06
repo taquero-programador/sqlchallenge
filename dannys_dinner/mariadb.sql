@@ -8,7 +8,8 @@ CREATE TABLE `bender`.`members` (
 CREATE TABLE `bender`.`menu` (
     `product_id` INT NOT NULL AUTO_INCREMENT ,
     `product_name` VARCHAR(30) NOT NULL ,
-    `price` INT NOT NULL , PRIMARY KEY (`product_id`)) ENGINE = InnoDB; 
+    `price` INT NOT NULL ,
+    PRIMARY KEY (`product_id`)) ENGINE = InnoDB; 
 
 -- tabla sales
 CREATE TABLE `bender`.`sales` (
