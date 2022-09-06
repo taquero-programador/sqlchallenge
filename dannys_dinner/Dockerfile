@@ -8,5 +8,5 @@ RUN pip install --no-cache-dir --upgrade -r /code/requeriments.txt
 
 COPY ./app /code/app
 
-CMD ["python3", "/code/app/main.py"]
+CMD ["uvicorn", "app.main:app"]
 
