@@ -19,7 +19,8 @@ def get_db():
 
 @app.post("/members/")
 def create_members(user: schemas.Members, db: Session = Depends(get_db)):
-    db_user = crud.validate_user(db, id_user=user.customer_id)
+    db_user = crud.validate_user(db, user_id=user.customer_id)
     if db_user:
         raise HTTPException(status_code=400, detail="Member already exist")
     return crud.create_member(db=db, user=user)
+

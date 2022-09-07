@@ -8,5 +8,11 @@ class Members(BaseModel):
     customer_id: str
     join_date: datetime
 
-    class Config:
-        ord_mode = True
+
+# response_model
+class MembersCreate(Members):
+    customer_id: str
+    join_date: datetime
+
+    class Confing:
+        orm_mode = True
