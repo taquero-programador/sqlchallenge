@@ -4,6 +4,7 @@
 from pydantic import BaseModel
 from datetime import date, datetime
 
+
 class Members(BaseModel):
     customer_id: str
     join_date: datetime
