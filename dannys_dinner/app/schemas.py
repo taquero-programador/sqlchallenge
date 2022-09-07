@@ -17,3 +17,16 @@ class MembersCreate(Members):
 
     class Confing:
         orm_mode = True
+
+
+class Menu(BaseModel):
+    product_name: str
+    price: float
+
+
+class MenuCreate(Menu):
+    product_name: str
+    price: float
+
+    class Confing:
+        orm_mode = True

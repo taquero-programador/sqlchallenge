@@ -1,6 +1,6 @@
 #!/urs/bin/env python3
 
-from sqlalchemy import (Boolean, Column,
+from sqlalchemy import (Float, Column,
                         ForeignKey, String,
                         Integer, Date, DateTime)
 from sqlalchemy.orm import relationship
@@ -22,7 +22,7 @@ class Menu(Base):
 
     product_id = Column(Integer, primary_key=True)
     product_name = Column(String(20))
-    price = Column(Boolean, nullable=False)
+    price = Column(Float, nullable=False)
 
     sales = relationship("Sales")
 
