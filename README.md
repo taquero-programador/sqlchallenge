@@ -6,8 +6,15 @@ Dinner project
 - ***
 - [ ] Run App(fastpi) in Docker for "production"
 - ***
-- ### Construir la imagen de Python con el Dockerfile
-- Entrar al directorio donde esta el Dockerfile
+Dentro del directorio app/ se debe crear un archivo .env, el cual debe de tener 3 parametos, ejem:
+```.env
+url_database=0.0.0.0:3306
+user_db=user
+pass_db=1234
+```
+
+### Construir la imagen de Python con el Dockerfile
+Entrar al directorio donde esta el Dockerfile
 ```bash
 cd sqlchallenge/dannys_dinner/
 ```
