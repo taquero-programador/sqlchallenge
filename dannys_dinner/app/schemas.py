@@ -24,6 +24,7 @@ class Menu(BaseModel):
     price: float
 
 
+# response_model
 class MenuCreate(Menu):
     product_name: str
     price: float

@@ -27,8 +27,10 @@ def validate_user(db: Session, user_id: str):
 def get_item(db: Session, product_name: str):
     return db.query(models.Menu).filter(models.Menu.product_name==product_name).first()
 
+
 def get_all_items(db: Session, skip: int = 0, limit: int = 100):
     return db.query(models.Menu).offset(skip).limit(limit).all()
+
 
 def create_item(db: Session, item: schemas.MenuCreate):
     db_item = models.Menu(**item.dict())
