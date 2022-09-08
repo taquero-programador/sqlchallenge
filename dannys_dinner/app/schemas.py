@@ -5,27 +5,27 @@ from pydantic import BaseModel
 from datetime import date, datetime
 
 
-class Members(BaseModel):
+class MembersCreate(BaseModel):
     customer_id: str
     join_date: datetime
 
 
 # response_model
-class MembersCreate(Members):
-    customer_id: str
+class Members(MembersCreate):
+    #customer_id: str
     join_date: datetime
 
     class Confing:
         orm_mode = True
 
 
-class Menu(BaseModel):
+class MenuCreate(BaseModel):
     product_name: str
     price: float
 
 
 # response_model
-class MenuCreate(Menu):
+class Menu(MenuCreate):
     product_name: str
     price: float
 

@@ -13,6 +13,7 @@ engine = create_engine(SQLALCHEMY_DATEBASE_URL.format(
     settings.pass_db.get_secret_value(),
     settings.url_db
     ))
+
 SessionLocal = sessionmaker(autocommit=False, bind=engine)
 Base = declarative_base()
 

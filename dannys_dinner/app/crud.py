@@ -12,8 +12,9 @@ def get_all_users(db: Session, skip: int = 0, limit: int = 100):
     return db.query(models.Members).offset(skip).limit(limit).all()
 
 
-def create_member(db: Session, user: schemas.MembersCreate):
-    db_user = models.Members(customer_id=user.customer_id.upper(), join_date=user.join_date)
+def create_user(db: Session, user: schemas.MembersCreate):
+    db_user = models.Members(customer_id=user.customer_id.upper(),
+                             join_date=user.join_date)
     db.add(db_user)
     db.commit()
     db.refresh(db_user)
@@ -33,7 +34,8 @@ def get_all_items(db: Session, skip: int = 0, limit: int = 100):
 
 
 def create_item(db: Session, item: schemas.MenuCreate):
-    db_item = models.Menu(**item.dict())
+    db_item = models.Menu(product_name=item.product_name.upper(),
+                          price=item.price)
     db.add(db_item)
     db.commit()
     db.refresh(db_item)

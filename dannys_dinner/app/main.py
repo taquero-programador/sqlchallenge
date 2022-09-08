@@ -2,7 +2,7 @@
 
 from fastapi import Depends, FastAPI, HTTPException
 from sqlalchemy.orm import Session
-from . import models, schemas, crud
+from . import crud, models, schemas
 from .database import SessionLocal, engine
 
 models.Base.metadata.create_all(bind=engine)
@@ -32,11 +32,11 @@ def read_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
 
 
 @app.post("/members/")
-def create_members(user: schemas.Members, db: Session = Depends(get_db)):
+def create_member(user: schemas.MembersCreate, db: Session = Depends(get_db)):
     db_user = crud.validate_user(db, user_id=user.customer_id)
     if db_user:
-        raise HTTPException(status_code=400, detail="Member already exist!")
-    return crud.create_member(db=db, user=user)
+        raise HTTPException(status_code=400, detail="User already exists!")
+    return crud.create_user(db=db, user=user)
 
 
 @app.get("/menu/{product_name}")
