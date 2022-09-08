@@ -15,16 +15,12 @@ user_db=user
 pass_db=1234
 ```
 
-### Construir la imagen de Python con el Dockerfile
-Entrar al directorio donde esta el Dockerfile
+### Construir los contenedores de Mariadb, Phpmyadmin y el Dockerfile.
+Ir al directorio de trabajo.
 ```bash
 cd sqlchallenge/dannys_dinner/
 ```
-Construir el Dockerfile
+Construir el docker-compose.yml
 ```bash
-docker build -t api .
-```
-Inicar el contenedor usando la ip del host
-```bash
-docker run -d --network=host --name pyapi api
+docker-compose up -d --build
 ```
