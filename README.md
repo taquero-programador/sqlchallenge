@@ -3,6 +3,7 @@ Dinner project
 - [x] Test connect Python to DB
 - [ ] Simple FastAPI
 - [x] Test container connect to DB
+- [ ] Solve "value is not a valid dict"
 - ***
 - [ ] Run App(fastpi) in Docker for "production"
 - ***
