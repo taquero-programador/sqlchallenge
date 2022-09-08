@@ -10,7 +10,7 @@ Dinner project
 - ***
 Dentro del directorio app/ se debe crear un archivo .env, el cual debe de tener 3 parametos, ejem:
 ```.env
-url_database=0.0.0.0:3306
+url_database=localhost:3306
 user_db=user
 pass_db=1234
 ```
