@@ -1,10 +1,10 @@
 Dinner project
-- [x] Use sqlalchemy for db
-- [x] Test connect Python to DB
-- [ ] Simple FastAPI
-- [x] Test container connect to DB
-- [ ] Solve "value is not a valid dict"
-- [ ] Add Docker-compose to create DB and build Dockerfile
+- [x] Use sqlalchemy for db.
+- [x] Test connect Python to DB.
+- [ ] Simple FastAPI.
+- [x] Test container connect to DB.
+- [ ] Solve "value is not a valid dict".
+- [x] Add docker-compose file to create DB and build Dockerfile.
 - ***
 - [ ] Run App(fastpi) in Docker for "production"
 - ***
