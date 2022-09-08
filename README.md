@@ -4,6 +4,7 @@ Dinner project
 - [ ] Simple FastAPI
 - [x] Test container connect to DB
 - [ ] Solve "value is not a valid dict"
+- [ ] Add Docker-compose to create DB and build Dockerfile
 - ***
 - [ ] Run App(fastpi) in Docker for "production"
 - ***
