@@ -12,7 +12,7 @@ class MembersCreate(BaseModel):
 
 # response_model
 class Members(MembersCreate):
-    #customer_id: str
+    customer_id: str
     join_date: datetime
 
     class Confing:
