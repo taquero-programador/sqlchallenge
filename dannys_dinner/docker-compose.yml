@@ -21,7 +21,7 @@ services:
     restart: always
     environment:
      # - MYSQL_ROOT_PASSWORD=mypass
-      - PMA_HOST=69.28.85.47
+      - PMA_HOST=127.0.0.1
      # - PMA_USER=root
      # - PMA_PASSWORD=pass
     depends_on:
