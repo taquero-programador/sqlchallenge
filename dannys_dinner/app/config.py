@@ -4,9 +4,10 @@ import os
 from pydantic import BaseSettings, Field, SecretStr
 from dotenv import load_dotenv
 
+load_dotenv()
+
 
 class Settings(BaseSettings):
-    load_dotenv()
     # url_db: str = Field(..., env="url_database")
     # url_db: str = os.getenv("url_database")
     url_db: str = os.environ["URL_DATABASE"]
