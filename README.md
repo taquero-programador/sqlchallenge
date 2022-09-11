@@ -10,11 +10,10 @@ Dinner project
 - ***
 Dentro del directorio app/ se debe crear un archivo .env, el cual debe de tener 3 parametos, ejem:
 ```.env
-url_database=localhost:3306
-user_db=user
-pass_db=1234
+URL_DATABASE=localhost:3306
+USER_DB=user
+PASS_DB=1234
 ```
-
 ### Construir los contenedores de Mariadb, Phpmyadmin y el Dockerfile.
 Ir al directorio de trabajo.
 ```bash
