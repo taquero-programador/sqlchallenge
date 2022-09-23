@@ -24,4 +24,4 @@ Construir el docker-compose.yml
 docker-compose up -d --build
 ```
 ### Last change
-Deshabilito la opción de `network_mode: host`, en su lugar lo conecto a una red existente. Ahora los servicio se comunican entre si mediante el nombre de servicio. 
+Quito la opción de `network_mode: host`. Ahora ya sea que esten conectados a la misma red o compose creé una, se pueden ver y acceder por el nombre de servicio o container_name. 
