@@ -1,7 +1,6 @@
 version: '3.1'
 
 services:
-
   db:
     image: mariadb
     container_name: mariadb
@@ -13,7 +12,7 @@ services:
       - MYSQL_DATABASE=bender
     volumes:
       - ./data:/var/lib/mysql
-    network_mode: host
+    #network_mode: host
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
@@ -21,16 +20,18 @@ services:
     restart: always
     environment:
      # - MYSQL_ROOT_PASSWORD=mypass
-      - PMA_HOST=127.0.0.1
+      - PMA_HOST=db #nombre del servicio
      # - PMA_USER=root
      # - PMA_PASSWORD=pass
     depends_on:
       - db
-    network_mode: host
+    #network_mode: host
 
   app:
     container_name: fastapi
     build: .
+    ports:
+      - 8000:8000
     depends_on:
       - db
-    network_mode: host
+    #network_mode: host
