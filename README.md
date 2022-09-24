@@ -14,7 +14,7 @@ URL_DATABASE=db:3306
 USER_DB=user
 PASS_DB=1234
 ```
-### Construir los contenedores de Mariadb, Phpmyadmin y el Dockerfile.
+### Construir el Dockerfile solo para FastAPI. se reduce el archivo compose.
 Ir al directorio de trabajo.
 ```bash
 cd sqlchallenge/dannys_dinner/
@@ -24,4 +24,4 @@ Construir el docker-compose.yml
 docker-compose up -d --build
 ```
 ### Last change
-Elimino la opción de `network_mode: host`. Ahora ya sea que esten conectados a la misma red o compose creé una, se pueden ver y acceder por el nombre de servicio o container_name. 
+Elimino la opción de `network_mode: host`. Ahora ya sea que esten conectados a la misma red o compose creé una, se pueden ver y acceder por el nombre de servicio o container_name.  
