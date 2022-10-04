@@ -9,7 +9,3 @@ jobs:
     - name: build and push docker
       run: docker-compose up -d --build
       working-directory: dannys_dinner
-      with:
-        username: ${{ secrets.USERNAME  }}
-        password: ${{ secrets.PASSWORD  }}
-        repository: ${{ github.repository  }}   
