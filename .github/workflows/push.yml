@@ -7,6 +7,5 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: build and push docker
-      run: docker network create my_net
-      run: docker-compose up -d --build
+      run: docker network create my_net && docker-compose up -d --build
       working-directory: dannys_dinner
