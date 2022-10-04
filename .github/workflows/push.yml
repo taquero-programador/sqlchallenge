@@ -9,6 +9,7 @@ jobs:
     - name: build and push docker
       uses: docker/build-push-action@v1
       run: docker-compose up -d --build
+      working-directory: dannys_dinner
       with:
         username: ${{ secrets.USERNAME  }}
         password: ${{ secrets.PASSWORD  }}
