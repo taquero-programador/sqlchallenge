@@ -1,5 +1,8 @@
 name: Deploy on Docker
-on: push
+on:
+  pull_request:
+  push:
+    branches: master
 jobs:
   deploy:
     name: deploy to cluster
