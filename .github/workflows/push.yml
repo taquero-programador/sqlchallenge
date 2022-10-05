@@ -1,3 +1,4 @@
+name: test on docker
 on: push
 name: deploy
 jobs:
