@@ -6,6 +6,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: build and push docker
-      run: docker network create my_net && docker-compose up -d --build
+    - name: create network "my_net"
+      run: docker network create my_net
+    - name: build compose
+      run: docker-compose up -d --build
       working-directory: dannys_dinner
