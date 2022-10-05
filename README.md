@@ -3,7 +3,6 @@ Dinner project
 - [x] Test connect Python to DB.
 - [x] Simple FastAPI.
 - [x] Test container connect to DB.
-- [ ] Solve "value is not a valid dict".
 - [x] Add docker-compose file to create DB and build Dockerfile.
 - [x] Testing CI/CD.
 - ***
