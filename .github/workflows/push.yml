@@ -1,5 +1,5 @@
 on: push
-name: deploy docker
+name: deploy in docker
 jobs:
   deploy:
     name: deploy to cluster
