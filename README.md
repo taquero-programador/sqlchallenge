@@ -5,7 +5,7 @@ Dinner project
 - [x] Test container connect to DB.
 - [ ] Solve "value is not a valid dict".
 - [x] Add docker-compose file to create DB and build Dockerfile.
-- [x] Add and test CI/CD.
+- [x] Testing CI/CD.
 - ***
 - [x] Run App(fastpi) in Docker for "production"
 - ***
