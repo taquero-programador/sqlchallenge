@@ -16,6 +16,7 @@ URL_DATABASE=db:3306
 USER_DB=user
 PASS_DB=1234
 ```
+
 ### Construir el Dockerfile solo para FastAPI. se reduce el archivo compose.
 Ir al directorio de trabajo.
 ```bash
@@ -25,6 +26,7 @@ Construir el docker-compose.yml
 ```bash
 docker-compose up -d --build
 ```
+
 ### Last change
 Elimine la opción de `network_mode: host`. Ahora ya sea que esten conectados a la misma red o compose creé una, se pueden ver y acceder por el nombre de servicio o container_name.
 
