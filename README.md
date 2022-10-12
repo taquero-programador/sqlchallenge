@@ -7,7 +7,9 @@ Dinner project
 - [x] Testing CI/CD.
 - [x] Run App(fastpi) in Docker for "production"
 - [ ] Check error `value is not a dict`.
-- ***
+
+***
+
 Dentro del directorio app/ se debe crear un archivo .env, el cual debe de tener 3 parametos, ejem:
 ```.env
 URL_DATABASE=db:3306
