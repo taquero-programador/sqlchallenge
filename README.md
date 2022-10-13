@@ -1,4 +1,4 @@
-Dinner project
+## Dinner project
 - [x] Use sqlalchemy for db.
 - [x] Test connect Python to DB.
 - [x] Simple FastAPI.
@@ -17,7 +17,7 @@ USER_DB=user
 PASS_DB=1234
 ```
 
-### Construir el Dockerfile solo para FastAPI. se reduce el archivo compose.
+### Construir el Dockerfile solo para FastAPI. se reduce el archivo compose
 Ir al directorio de trabajo.
 ```bash
 cd sqlchallenge/dannys_dinner/
